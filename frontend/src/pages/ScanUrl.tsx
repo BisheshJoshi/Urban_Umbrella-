@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useWallet } from "../context/WalletContext";
-import { apiPost } from "../lib/api";
 import LoadingIcon from "../components/LoadingIcon";
 
 interface RiskInfo {
@@ -33,7 +32,7 @@ const TIPS = [
 ];
 
 export default function ScanUrl(): React.JSX.Element {
-  const { authToken } = useWallet();
+  useWallet();
 
   const [url,     setUrl]     = useState("");
   const [loading, setLoading] = useState(false);

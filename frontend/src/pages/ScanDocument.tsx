@@ -14,7 +14,7 @@ function UploadIcon(): React.JSX.Element {
 }
 
 export default function ScanDocument(): React.JSX.Element {
-  const { authToken } = useWallet();
+  useWallet();
 
   const [isDragging, setIsDragging] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);

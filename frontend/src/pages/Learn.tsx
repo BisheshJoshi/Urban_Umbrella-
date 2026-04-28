@@ -32,7 +32,9 @@ const playSound = (type: 'correct'|'wrong') => {
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
       osc.start(); osc.stop(ctx.currentTime + 0.4);
     }
-  } catch(e) {}
+  } catch {
+    return;
+  }
 };
 const LESSONS = [
   {
@@ -318,7 +320,7 @@ export default function Learn() {
     if (address && !certName) {
       setCertName(`${address.slice(0, 6)}...${address.slice(-4)}`);
     }
-  }, [address]);
+  }, [address, certName]);
 
   const markComplete = (id) => {
     const next = completed.includes(id) ? completed : [...completed, id];

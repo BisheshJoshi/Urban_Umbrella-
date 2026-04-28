@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { useTour } from "../context/TourContext";
 import LoadingIcon from "./LoadingIcon";
@@ -134,7 +134,7 @@ export default function SpotlightTour() {
   const [tipSize, setTipSize]   = useState({ w: 340, h: 230 });
   const splashTimer             = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const steps = TOUR_STEPS[location.pathname] ?? [];
+  const steps = useMemo(() => TOUR_STEPS[location.pathname] ?? [], [location.pathname]);
 
   // Use refs so handleNext always reads the latest values (avoids stale closures)
   const stepsRef     = useRef(steps);
@@ -234,12 +234,11 @@ export default function SpotlightTour() {
     measure(steps[stepIdx]);
   }, [stepIdx, phase, steps, measure, stopTour]);
 
-  // ── Tooltip size measurement ─────────────────────────────────────────────
   useEffect(() => {
     if (tooltipRef.current) {
       setTipSize({ w: tooltipRef.current.offsetWidth || 340, h: tooltipRef.current.offsetHeight || 230 });
     }
-  });
+  }, [phase, stepIdx, rect]);
 
   // ── Handle Next ──────────────────────────────────────────────────────────
   const handleNext = useCallback(() => {
@@ -263,12 +262,15 @@ export default function SpotlightTour() {
   // ── Handle Back ──────────────────────────────────────────────────────────
   const handleBack = useCallback(() => {
     // Close mobile menu if we are leaving the wallet step
-    if (location.pathname === "/" && stepIdx === 1 && window.innerWidth < 768) {
+    const curPath = pathnameRef.current;
+    const curStepIdx = stepIdxRef.current;
+
+    if (curPath === "/" && curStepIdx === 1 && window.innerWidth < 768) {
       const burger = document.querySelector(".uu-hamburger.open") as HTMLElement;
       if (burger) burger.click();
     }
     setStepIdx(p => Math.max(0, p - 1));
-  }, [location.pathname, stepIdx]);
+  }, []);
 
   // ── Keyboard nav ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -280,7 +282,7 @@ export default function SpotlightTour() {
     };
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
-  }, [isTourActive, stopTour, handleNext]);
+  }, [isTourActive, stopTour, handleNext, handleBack]);
 
   if (phase === "idle") return null;
 

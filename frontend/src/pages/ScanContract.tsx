@@ -1,6 +1,5 @@
 import React, { useState, DragEvent, useRef } from "react";
 import { useWallet } from "../context/WalletContext";
-import { apiPost } from "../lib/api";
 import LoadingIcon from "../components/LoadingIcon";
 
 const DEFAULT_PAYLOAD = JSON.stringify({
@@ -44,7 +43,7 @@ function UploadIcon(): React.JSX.Element {
 }
 
 export default function ScanContract(): React.JSX.Element {
-  const { authToken } = useWallet();
+  useWallet();
 
   const [payloadText, setPayloadText] = useState(DEFAULT_PAYLOAD);
   const [isDragging, setIsDragging] = useState(false);
