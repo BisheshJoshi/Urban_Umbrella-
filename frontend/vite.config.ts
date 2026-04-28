@@ -1,7 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
+// Allow overriding the base path via VITE_BASE (useful for GitHub Pages)
+const base = process.env.VITE_BASE ?? "/";
+
 export default defineConfig({
+  base,
   plugins: [react({ jsxRuntime: "automatic" })],
   // @ts-expect-error — vitest augments this type at runtime
   test: {

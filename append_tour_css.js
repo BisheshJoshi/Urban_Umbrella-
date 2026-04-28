@@ -1,4 +1,6 @@
-const fs = require('fs');
+git add deploy-frontend.yml vite.config.ts
+git commit -m "Add Pages deploy workflow and Vite base config"
+git push origin mainconst fs = require('fs');
 let css = fs.readFileSync('frontend/src/App.css', 'utf8');
 const tourCss = `
 
