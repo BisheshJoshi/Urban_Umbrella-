@@ -1,0 +1,25 @@
+{
+  "name": "urban-umbrella-contracts",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "lint": "solhint \"contracts/**/*.sol\"",
+    "test": "hardhat test",
+    "compile": "hardhat compile"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^4.0.7",
+    "@nomicfoundation/hardhat-node-test-runner": "^3.0.12",
+    "chai": "^6.2.2",
+    "ethers": "^6.15.0",
+    "hardhat": "^3.3.0",
+    "solhint": "^6.0.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0"
+  },
+  "overrides": {
+    "undici": "^6.24.0"
+  }
+}

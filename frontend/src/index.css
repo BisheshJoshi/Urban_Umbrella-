@@ -1,0 +1,12 @@
+/* index.css — minimal global resets, deferred to App.css for all styles */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { min-height: 100%; }
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

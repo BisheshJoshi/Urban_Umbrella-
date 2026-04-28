@@ -1,0 +1,28 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node artifacts
+node_modules/
+UrbanUmbrella/frontend/frontend/node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Local virtual environments
+.venv/
+UrbanUmbrella/.v/
+
+# Local runtime data
+UrbanUmbrella/.coverage
+UrbanUmbrella/data/*.db
+UrbanUmbrella/frontend/frontend/coverage/
+UrbanUmbrella/frontend/frontend/test-results/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

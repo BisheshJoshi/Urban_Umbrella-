@@ -1,0 +1,19 @@
+UrbanUmbrella Tech Stack
+
+React 19
+TypeScript
+Vite
+TanStack Router
+TanStack Query
+TanStack Form
+TanStack Table
+TanStack Virtual
+ESLint
+Vitest
+Testing Library (React, jest-dom, user-event)
+Playwright
+Hardhat
+Solidity
+Ethers.js v6
+OpenZeppelin Contracts
+Solhint
