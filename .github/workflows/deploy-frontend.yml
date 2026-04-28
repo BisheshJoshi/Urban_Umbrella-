@@ -18,6 +18,8 @@ jobs:
   build-and-deploy:
     name: Build and deploy frontend
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     env:
       # Set Vite base to repo path so assets load correctly on Pages
       VITE_BASE: "/${{ github.event.repository.name }}/"
